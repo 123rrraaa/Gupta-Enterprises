@@ -358,7 +358,7 @@ const CustomerSupportChatbot: React.FC = () => {
             <button
                 id="customer-support-btn"
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+                className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
                 title="Customer Support"
             >
                 {isOpen ? (
@@ -381,11 +381,11 @@ const CustomerSupportChatbot: React.FC = () => {
             {isOpen && (
                 <div
                     id="customer-support-window"
-                    className="fixed bottom-24 right-6 z-50 w-[420px] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+                    className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 w-full sm:w-[400px] h-full sm:h-auto sm:max-h-[600px] bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
                     style={{ animation: "csSlideUp 0.3s ease-out" }}
                 >
                     {/* ── Header ──────────────────────────────────────────── */}
-                    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-4 flex items-center gap-3">
+                    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
                         <div className="bg-white/20 p-2 rounded-lg">
                             <span className="text-xl">🎧</span>
                         </div>
@@ -422,7 +422,7 @@ const CustomerSupportChatbot: React.FC = () => {
 
                     {/* ── History Panel ────────────────────────────────────── */}
                     {showHistory ? (
-                        <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ maxHeight: "450px" }}>
+                        <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
                             <div className="flex items-center justify-between mb-2">
                                 <h4 className="font-semibold text-sm text-gray-700">📋 Past Conversations</h4>
                                 <button onClick={() => setShowHistory(false)} className="text-xs text-blue-500 hover:text-blue-700">
@@ -444,7 +444,7 @@ const CustomerSupportChatbot: React.FC = () => {
                     ) : (
                         <>
                             {/* ── Messages ────────────────────────────────── */}
-                            <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ maxHeight: "350px" }}>
+                            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4">
                                 {messages.map(msg => (
                                     <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                                         <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm ${msg.role === "user"
