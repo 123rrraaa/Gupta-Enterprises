@@ -1,0 +1,20 @@
+[
+  {
+    "id": "admin1",
+    "name": "Administrator",
+    "email": "admin@guptaenterprises.com",
+    "password": "admin123"
+  },
+  {
+    "id": "1768847275308",
+    "name": "Raj Patil",
+    "email": "rajpatil8837@gmail.com",
+    "password": "Raj@1234"
+  },
+  {
+    "id": "1770973117912",
+    "name": "Aman Gupta",
+    "email": "123aman4039@sjcem.edu.in",
+    "password": "23072005"
+  }
+]

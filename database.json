@@ -1,0 +1,17 @@
+{
+  "admins": [
+    {
+      "id": "1768840647754",
+      "name": "Raj Patil",
+      "email": "rajpatil8837@gmail.com",
+      "password": "Raj@1234"
+    },
+    {
+      "id": "1768884614123",
+      "name": "Raj",
+      "email": "123raj4030@sjcem.edu.in",
+      "password": "Raj@1234"
+    }
+  ],
+  "orders": []
+}
