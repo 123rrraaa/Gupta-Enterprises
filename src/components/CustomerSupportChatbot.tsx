@@ -30,10 +30,10 @@ const QUICK_ACTIONS = [
 ];
 
 // ─── API URLs ────────────────────────────────────────────────────────────────
-const AI_CHAT_URL = "http://localhost:5000/ai/chat";
-const SUMMARIZE_URL = "http://localhost:5000/ai/summarize";
-const SUMMARIES_URL = "http://localhost:5000/ai/summaries";
-const TICKET_URL = "http://localhost:5000/ai/support-ticket";
+const AI_CHAT_URL = "https://gupta-enterprises-api.onrender.com/ai/chat";
+const SUMMARIZE_URL = "https://gupta-enterprises-api.onrender.com/ai/summarize";
+const SUMMARIES_URL = "https://gupta-enterprises-api.onrender.com/ai/summaries";
+const TICKET_URL = "https://gupta-enterprises-api.onrender.com/ai/support-ticket";
 
 // ─── Escalation Keywords Detection ───────────────────────────────────────────
 const PAYMENT_KEYWORDS = ["payment", "pay", "paid", "transaction", "charge", "charged", "debit", "deducted", "upi", "credit card", "debit card", "net banking", "billing", "invoice"];

@@ -55,8 +55,8 @@ const Checkout = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const API_ORDERS = "http://localhost:5000/orders";
-  const API_PAYMENT = "http://localhost:5000/payment";
+  const API_ORDERS = "https://gupta-enterprises-api.onrender.com/orders";
+  const API_PAYMENT = "https://gupta-enterprises-api.onrender.com/payment";
 
   // Handle Razorpay payment
   const handleRazorpayPayment = async (orderData: any) => {

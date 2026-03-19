@@ -19,9 +19,9 @@ const sizeOptions = ['250ml', '330ml', '500ml', '750ml', '1L', '2L', '5L', '10L'
 const categoryOptions = ['mineral', 'cold drinks', 'fruit juices', 'energy drinks', 'soda'];
 const brandOptions = ['bisleri', 'kinley', 'aquafina', 'himalayan', 'bailey', 'evian', 'sprite', 'coca cola', 'pepsi', 'fanta', 'frooti', 'smoodh', 'maaza'];
 const statusOptions = ['Confirmed', 'Processing', 'Shipped', 'Out for Delivery', 'Delivered', 'Cancelled'];
-const API_PRODUCTS = "http://localhost:5000/products";
-const API_ORDERS = "http://localhost:5000/orders";
-const API_TICKETS = "http://localhost:5000/ai/support-tickets";
+const API_PRODUCTS = "https://gupta-enterprises-api.onrender.com/products";
+const API_ORDERS = "https://gupta-enterprises-api.onrender.com/orders";
+const API_TICKETS = "https://gupta-enterprises-api.onrender.com/ai/support-tickets";
 
 interface SupportTicket {
   _id: string;
@@ -373,7 +373,7 @@ const Admin = () => {
           const formDataToUpload = new FormData();
           formDataToUpload.append('image', file);
 
-          const response = await fetch('http://localhost:5000/upload/upload', {
+          const response = await fetch('https://gupta-enterprises-api.onrender.com/upload/upload', {
             method: 'POST',
             body: formDataToUpload
           });

@@ -60,7 +60,7 @@ const AdminDashboard = () => {
     // Fetch products from API
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/products');
+        const response = await fetch('https://gupta-enterprises-api.onrender.com/products');
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
     // Fetch orders from MongoDB API
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/orders');
+        const response = await fetch('https://gupta-enterprises-api.onrender.com/orders');
         if (response.ok) {
           const data = await response.json();
           const ordersArray = Array.isArray(data) ? data : data.orders || [];

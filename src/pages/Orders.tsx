@@ -41,7 +41,7 @@ const Orders = () => {
     const loadOrders = async () => {
       try {
         // Fetch orders from MongoDB backend
-        const res = await fetch('http://localhost:5000/orders');
+        const res = await fetch('https://gupta-enterprises-api.onrender.com/orders');
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data)) {

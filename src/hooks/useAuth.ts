@@ -15,7 +15,7 @@ export const useAuth = () => {
 
   const signup = async (name: string, email: string, password: string): Promise<{ success: boolean; message: string }> => {
     try {
-      const response = await fetch('http://localhost:5000/users', {
+      const response = await fetch('https://gupta-enterprises-api.onrender.com/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
@@ -41,7 +41,7 @@ export const useAuth = () => {
 
   const login = async (email: string, password: string): Promise<{ success: boolean; message: string }> => {
     try {
-      const response = await fetch('http://localhost:5000/users/login', {
+      const response = await fetch('https://gupta-enterprises-api.onrender.com/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

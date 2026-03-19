@@ -25,7 +25,7 @@ const AdminLogin = () => {
   e.preventDefault();
 
   try {
-      const res = await fetch("http://localhost:5000/admins/login", {
+      const res = await fetch("https://gupta-enterprises-api.onrender.com/admins/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -75,7 +75,7 @@ const AdminLogin = () => {
 
   try {
     // Check existing admins
-    const res = await fetch("http://localhost:5000/admins");
+    const res = await fetch("https://gupta-enterprises-api.onrender.com/admins");
     const admins: AdminUser[] = await res.json();
 
     if (admins.find(a => a.email === signupData.email)) {
@@ -95,7 +95,7 @@ const AdminLogin = () => {
     };
 
     // Save to database via POST /admins
-    const signupRes = await fetch("http://localhost:5000/admins", {
+    const signupRes = await fetch("https://gupta-enterprises-api.onrender.com/admins", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newAdmin),

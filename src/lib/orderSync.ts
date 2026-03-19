@@ -1,4 +1,4 @@
-const API_ORDERS = "http://localhost:5000/orders";
+const API_ORDERS = "https://gupta-enterprises-api.onrender.com/orders";
 
 const QUEUE_KEY = 'water-orders-sync-queue';
 

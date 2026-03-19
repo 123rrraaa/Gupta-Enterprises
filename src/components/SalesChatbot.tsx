@@ -45,9 +45,9 @@ const QUICK_ACTIONS = [
 ];
 
 // ─── AI API URLs ─────────────────────────────────────────────────────────────
-const AI_API_URL = "http://localhost:5000/ai/chat";
-const SUMMARIZE_API_URL = "http://localhost:5000/ai/summarize";
-const SUMMARIES_API_URL = "http://localhost:5000/ai/summaries";
+const AI_API_URL = "https://gupta-enterprises-api.onrender.com/ai/chat";
+const SUMMARIZE_API_URL = "https://gupta-enterprises-api.onrender.com/ai/summarize";
+const SUMMARIES_API_URL = "https://gupta-enterprises-api.onrender.com/ai/summaries";
 
 // ─── Backend AI Proxy Call ───────────────────────────────────────────────────
 async function callAI(
