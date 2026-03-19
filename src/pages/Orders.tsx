@@ -114,12 +114,12 @@ const Orders = () => {
     }
 
     return (
-      <div className="py-4">
-        <div className="flex items-center justify-between relative">
+      <div className="py-4 overflow-x-auto">
+        <div className="flex items-center justify-between relative min-w-[280px]">
           {/* Progress Line */}
-          <div className="absolute top-5 left-0 right-0 h-1 bg-gray-200 -z-10" />
+          <div className="absolute top-4 sm:top-5 left-0 right-0 h-1 bg-gray-200 -z-10" />
           <div 
-            className="absolute top-5 left-0 h-1 bg-blue-500 -z-10 transition-all duration-500"
+            className="absolute top-4 sm:top-5 left-0 h-1 bg-blue-500 -z-10 transition-all duration-500"
             style={{ width: `${(currentIndex / (statusSteps.length - 1)) * 100}%` }}
           />
           
@@ -131,15 +131,15 @@ const Orders = () => {
             return (
               <div key={step.key} className="flex flex-col items-center relative z-10">
                 <div 
-                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                     isCompleted 
                       ? 'bg-blue-500 text-white' 
                       : 'bg-gray-200 text-gray-400'
                   } ${isCurrent ? 'ring-4 ring-blue-200' : ''}`}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
-                <p className={`text-xs mt-2 text-center max-w-[60px] ${
+                <p className={`text-[10px] sm:text-xs mt-1 sm:mt-2 text-center max-w-[50px] sm:max-w-[60px] leading-tight ${
                   isCompleted ? 'text-blue-600 font-medium' : 'text-gray-400'
                 }`}>
                   {step.label}

@@ -333,18 +333,18 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
 
   // ─── Render ───────────────────────────────────────────────────────────────
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm space-y-8">
+    <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm space-y-6 sm:space-y-8 overflow-x-hidden">
       {/* Header + Time Range Toggle */}
-      <div className="flex flex-wrap gap-4 items-center">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-start sm:items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">📊 Sales Data Visualization</h2>
-          <p className="text-sm text-gray-500 mt-1">AI-powered analytics & predictions</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">📊 Sales Data Visualization</h2>
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">AI-powered analytics & predictions</p>
         </div>
-        <div className="ml-auto flex gap-2">
+        <div className="sm:ml-auto flex flex-wrap gap-2">
           {TIME_RANGES.map(r => (
             <button
               key={r.value}
-              className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-200 ${months === r.value
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 ${months === r.value
                 ? "bg-blue-500 text-white shadow-md border-blue-500"
                 : "bg-white text-gray-600 border-gray-200 hover:bg-blue-50 hover:border-blue-300"
                 }`}
@@ -358,39 +358,39 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
       </div>
 
       {/* ─── Value Cards ─────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {/* Customers */}
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-blue-100">
-          <div className="text-3xl font-bold text-blue-700">{numCustomers}</div>
-          <div className="text-gray-600 text-sm mt-1">Customers</div>
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-blue-100">
+          <div className="text-xl sm:text-3xl font-bold text-blue-700">{numCustomers}</div>
+          <div className="text-gray-600 text-xs sm:text-sm mt-1">Customers</div>
           <TrendArrow current={numCustomers} previous={prevNumCustomers} />
         </div>
 
         {/* Orders */}
-        <div className="bg-gradient-to-br from-green-50 to-green-100 p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-green-100">
-          <div className="text-3xl font-bold text-green-700">{numOrders}</div>
-          <div className="text-gray-600 text-sm mt-1">Orders</div>
+        <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-green-100">
+          <div className="text-xl sm:text-3xl font-bold text-green-700">{numOrders}</div>
+          <div className="text-gray-600 text-xs sm:text-sm mt-1">Orders</div>
           <TrendArrow current={numOrders} previous={prevNumOrders} />
         </div>
 
         {/* Items Sold */}
-        <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-amber-100">
-          <div className="text-3xl font-bold text-amber-700">{numItems}</div>
-          <div className="text-gray-600 text-sm mt-1">Items Sold</div>
+        <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-amber-100">
+          <div className="text-xl sm:text-3xl font-bold text-amber-700">{numItems}</div>
+          <div className="text-gray-600 text-xs sm:text-sm mt-1">Items Sold</div>
           <TrendArrow current={numItems} previous={prevNumItems} />
         </div>
 
         {/* Total Revenue */}
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-purple-100">
-          <div className="text-3xl font-bold text-purple-700">{formatCurrency(totalSales)}</div>
-          <div className="text-gray-600 text-sm mt-1">Total Revenue</div>
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-purple-100">
+          <div className="text-lg sm:text-3xl font-bold text-purple-700">{formatCurrency(totalSales)}</div>
+          <div className="text-gray-600 text-xs sm:text-sm mt-1">Total Revenue</div>
           <TrendArrow current={totalSales} previous={prevTotalSales} />
         </div>
 
         {/* Avg Order Value */}
-        <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-pink-100">
-          <div className="text-3xl font-bold text-pink-700">{formatCurrency(avgOrderValue)}</div>
-          <div className="text-gray-600 text-sm mt-1">Avg Order Value</div>
+        <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-pink-100">
+          <div className="text-lg sm:text-3xl font-bold text-pink-700">{formatCurrency(avgOrderValue)}</div>
+          <div className="text-gray-600 text-xs sm:text-sm mt-1">Avg Order Value</div>
           <TrendArrow current={avgOrderValue} previous={prevAvgOrderValue} />
         </div>
       </div>
@@ -522,10 +522,10 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
         <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
           <h3 className="font-semibold text-gray-800 mb-4">🏷️ Brand Revenue Ranking</h3>
           <ResponsiveContainer width="100%" height={Math.max(200, brandPieData.length * 50)}>
-            <BarChart data={brandPieData} layout="vertical" margin={{ left: 100 }}>
+            <BarChart data={brandPieData} layout="vertical" margin={{ left: 60 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
               <XAxis type="number" tick={{ fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={100} />
+              <YAxis type="category" dataKey="name" tick={{ fontSize: 11 }} width={60} />
               <Tooltip formatter={(value: any) => [formatCurrency(value), "Revenue"]} />
               <Bar dataKey="revenue" fill="#10b981" name="Revenue" radius={[0, 6, 6, 0]}>
                 {brandPieData.map((_, idx) => (
@@ -547,25 +547,25 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
           {/* Predicted Sales */}
-          <div className="bg-white rounded-xl p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
-            <div className="text-sm text-gray-500 mb-2">Predicted Next Month Sales</div>
-            <div className="text-3xl font-bold text-indigo-700">{formatCurrency(aiPrediction.predictedSales)}</div>
+          <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
+            <div className="text-xs sm:text-sm text-gray-500 mb-2">Predicted Next Month Sales</div>
+            <div className="text-xl sm:text-3xl font-bold text-indigo-700">{formatCurrency(aiPrediction.predictedSales)}</div>
           </div>
 
           {/* Growth Rate */}
-          <div className="bg-white rounded-xl p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
-            <div className="text-sm text-gray-500 mb-2">Predicted Growth Rate</div>
-            <div className={`text-3xl font-bold ${aiPrediction.growthRate >= 0 ? "text-green-600" : "text-red-500"}`}>
+          <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
+            <div className="text-xs sm:text-sm text-gray-500 mb-2">Predicted Growth Rate</div>
+            <div className={`text-xl sm:text-3xl font-bold ${aiPrediction.growthRate >= 0 ? "text-green-600" : "text-red-500"}`}>
               {aiPrediction.growthRate >= 0 ? "↑" : "↓"} {Math.abs(aiPrediction.growthRate)}%
             </div>
           </div>
 
           {/* Confidence */}
-          <div className="bg-white rounded-xl p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
-            <div className="text-sm text-gray-500 mb-2">Prediction Confidence</div>
-            <div className="text-3xl font-bold text-amber-600">{aiPrediction.confidence}%</div>
+          <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
+            <div className="text-xs sm:text-sm text-gray-500 mb-2">Prediction Confidence</div>
+            <div className="text-xl sm:text-3xl font-bold text-amber-600">{aiPrediction.confidence}%</div>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
               <div
                 className={`h-2 rounded-full transition-all duration-500 ${aiPrediction.confidence >= 70 ? "bg-green-500" :
@@ -596,7 +596,7 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
         )}
 
         {/* Info Cards Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
           <div className="bg-white rounded-lg p-4 shadow-sm text-center border border-green-100">
             <div className="text-lg font-bold text-green-700">{formatCurrency(totalSales)}</div>
             <div className="text-gray-600 text-sm">Revenue (Selected Range)</div>

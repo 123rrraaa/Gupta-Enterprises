@@ -81,7 +81,7 @@ const ProductForm: React.FC<ProductFormProps> = React.memo(({ formData, onInputC
       />
     </div>
 
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label className="block text-sm font-medium mb-2">Brand *</label>
         <select
@@ -128,7 +128,7 @@ const ProductForm: React.FC<ProductFormProps> = React.memo(({ formData, onInputC
       </select>
     </div>
 
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label className="block text-sm font-medium mb-2">Price (₹) *</label>
         <Input
@@ -770,22 +770,22 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="products" className="space-y-6">
-          <TabsList className="grid w-full max-w-2xl grid-cols-4">
-            <TabsTrigger value="products" className="flex items-center gap-2">
-              <Droplets className="h-4 w-4" />
-              Products
+          <TabsList className="grid w-full max-w-2xl grid-cols-2 md:grid-cols-4 h-auto">
+            <TabsTrigger value="products" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 py-2">
+              <Droplets className="h-4 w-4 shrink-0" />
+              <span className="truncate">Products</span>
             </TabsTrigger>
-            <TabsTrigger value="orders" className="flex items-center gap-2">
-              <Package className="h-4 w-4" />
-              Orders ({orders.length})
+            <TabsTrigger value="orders" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 py-2">
+              <Package className="h-4 w-4 shrink-0" />
+              <span className="truncate">Orders ({orders.length})</span>
             </TabsTrigger>
-            <TabsTrigger value="support-tickets" className="flex items-center gap-2">
-              <MessageSquare className="h-4 w-4" />
-              Tickets {openTickets > 0 && <span className="ml-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold">{openTickets}</span>}
+            <TabsTrigger value="support-tickets" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 py-2">
+              <MessageSquare className="h-4 w-4 shrink-0" />
+              <span className="truncate">Tickets</span> {openTickets > 0 && <span className="ml-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold shrink-0">{openTickets}</span>}
             </TabsTrigger>
-            <TabsTrigger value="data-visualization" className="flex items-center gap-2">
-              <span role="img" aria-label="chart">📊</span>
-              Data Visualization
+            <TabsTrigger value="data-visualization" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 py-2">
+              <span role="img" aria-label="chart" className="shrink-0">📊</span>
+              <span className="truncate">Data Viz</span>
             </TabsTrigger>
           </TabsList>
 
