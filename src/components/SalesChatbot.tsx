@@ -385,6 +385,15 @@ const SalesChatbot: React.FC<SalesChatbotProps> = ({ salesData, allOrders }) => 
                 >
                     {/* Header */}
                     <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                        <button
+                            onClick={() => { setIsOpen(false); window.location.href = '/'; }}
+                            className="p-1.5 rounded-lg hover:bg-white/20 transition-colors"
+                            title="Back to Home"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
                         <div className="bg-white/20 p-2 rounded-lg">
                             <span className="text-xl">🤖</span>
                         </div>
