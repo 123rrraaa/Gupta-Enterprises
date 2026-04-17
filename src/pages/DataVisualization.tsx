@@ -589,7 +589,7 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
                 <Tooltip formatter={(value: any, name: string) => [value ? formatCurrency(value) : "—", name]} />
                 <Legend />
                 <Area type="monotone" dataKey="revenue" stroke="#6366f1" fill="#e0e7ff" name="Actual Revenue" strokeWidth={2} />
-                <Area type="monotone" dataKey="predicted" stroke="#ec4899" fill="#fce7f3" name="AI Prediction" strokeWidth={2} strokeDasharray="8 4" />
+                <Area type="monotone" dataKey="predicted" stroke="#ec4899" fill="#fce7f3" name="AI Prediction" strokeWidth={2} strokeDasharray="8 4" legendType="none" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
