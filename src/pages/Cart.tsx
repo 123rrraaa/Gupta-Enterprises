@@ -26,7 +26,7 @@ const Cart = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <main className="pt-28 pb-16">
+      <main className="pt-36 sm:pt-28 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-3 mb-8">
             <ShoppingCart className="h-8 w-8 text-blue-500" />
