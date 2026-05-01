@@ -324,8 +324,34 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
   // ─── AI/ML Prediction ─────────────────────────────────────────────────────
   const aiPrediction = useMemo(() => {
     const revenues = monthlyRevenue.map(m => m.revenue);
-    return predictNextMonth(revenues);
-  }, [monthlyRevenue]);
+    if (revenues.length === 0) {
+      return { predictedSales: 0, growthRate: 0, confidence: 0, method: "No data available" };
+    }
+    const futurePredictions = predictMultipleMonths(revenues, months);
+    const lastPrediction = futurePredictions[futurePredictions.length - 1] || 0;
+    const lastActual = revenues[revenues.length - 1] || 1;
+    const growthRate = ((lastPrediction - lastActual) / lastActual) * 100;
+    
+    // Confidence decreases with longer prediction horizons
+    const n = revenues.length;
+    const dataConfidence = Math.min(n / 6, 1) * 50;
+    const horizonPenalty = Math.max(0, 1 - (months - 1) * 0.08);
+    const baseConfidence = dataConfidence + 50 * horizonPenalty;
+    const confidence = Math.round(Math.min(100, baseConfidence));
+    
+    const method = n >= 4
+      ? "Ensemble: Linear Regression (60%) + Exponential Smoothing (40%)"
+      : n >= 2
+        ? "Limited data: Weighted average of LR and ES models"
+        : "Insufficient data for reliable prediction";
+    
+    return {
+      predictedSales: Math.round(lastPrediction),
+      growthRate: parseFloat(growthRate.toFixed(1)),
+      confidence,
+      method,
+    };
+  }, [monthlyRevenue, months]);
 
   // Future prediction chart data (show historical months + predicted future months based on selected range)
   const predictionChartData = useMemo(() => {
@@ -569,7 +595,7 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
           {/* Predicted Sales */}
           <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm text-center border border-indigo-100 transition-transform duration-200 hover:scale-105">
-            <div className="text-xs sm:text-sm text-gray-500 mb-2">Predicted Next Month Sales</div>
+            <div className="text-xs sm:text-sm text-gray-500 mb-2">Predicted {months === 1 ? "Next Month" : months === 12 ? "1 Year" : `${months} Month`} Sales</div>
             <div className="text-xl sm:text-3xl font-bold text-indigo-700">{formatCurrency(aiPrediction.predictedSales)}</div>
           </div>
 
