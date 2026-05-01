@@ -327,36 +327,32 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     return predictNextMonth(revenues);
   }, [monthlyRevenue]);
 
-  // Future prediction chart data (show last N months + predicted future months)
+  // Future prediction chart data (show historical months + predicted future months based on selected range)
   const predictionChartData = useMemo(() => {
-    const last6 = monthlyRevenue.slice(-6).map(m => ({
+    // Show historical data matching the selected time range
+    const historical = filteredMonthlyRevenue.map(m => ({
       month: m.month,
       revenue: m.revenue,
       predicted: null as number | null,
     }));
     
     const revenues = monthlyRevenue.map(m => m.revenue);
-    // Predict 12 months ahead
-    const futurePredictions = predictMultipleMonths(revenues, 12);
+    // Predict exactly as many months as the selected time range
+    const futurePredictions = predictMultipleMonths(revenues, months);
     
     if (futurePredictions.length > 0) {
-      // Add predicted months at positions: 1, 3, 6, 12 months ahead
-      const predictMonthIndices = [0, 2, 5, 11]; // 1m, 3m, 6m, 12m
-      
-      for (const idx of predictMonthIndices) {
-        if (idx < futurePredictions.length) {
-          const nextDate = new Date(now);
-          nextDate.setMonth(nextDate.getMonth() + idx + 1);
-          last6.push({
-            month: nextDate.toLocaleDateString("en-IN", { month: "short", year: "2-digit" }),
-            revenue: null as any,
-            predicted: futurePredictions[idx],
-          });
-        }
+      for (let i = 0; i < futurePredictions.length; i++) {
+        const nextDate = new Date(now);
+        nextDate.setMonth(nextDate.getMonth() + i + 1);
+        historical.push({
+          month: nextDate.toLocaleDateString("en-IN", { month: "short", year: "2-digit" }),
+          revenue: null as any,
+          predicted: futurePredictions[i],
+        });
       }
     }
-    return last6;
-  }, [monthlyRevenue, now]);
+    return historical;
+  }, [monthlyRevenue, filteredMonthlyRevenue, months, now]);
 
 
   // ─── Render ───────────────────────────────────────────────────────────────
