@@ -115,6 +115,22 @@ function predictNextMonth(monthlyRevenues: number[]): {
   };
 }
 
+/** Generate multi-month predictions by iteratively forecasting */
+function predictMultipleMonths(monthlyRevenues: number[], monthsAhead: number): number[] {
+  if (monthlyRevenues.length === 0) return Array(monthsAhead).fill(0);
+  
+  const predictions: number[] = [];
+  const data = [...monthlyRevenues];
+  
+  for (let i = 0; i < monthsAhead; i++) {
+    const result = predictNextMonth(data);
+    predictions.push(result.predictedSales);
+    data.push(result.predictedSales); // Feed prediction back for next iteration
+  }
+  
+  return predictions;
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const formatCurrency = (n: number) => "₹" + n.toLocaleString("en-IN");
 
@@ -311,24 +327,36 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     return predictNextMonth(revenues);
   }, [monthlyRevenue]);
 
-  // Future prediction chart data (show last N months + predicted next month)
+  // Future prediction chart data (show last N months + predicted future months)
   const predictionChartData = useMemo(() => {
     const last6 = monthlyRevenue.slice(-6).map(m => ({
       month: m.month,
       revenue: m.revenue,
       predicted: null as number | null,
     }));
-    if (aiPrediction.predictedSales > 0) {
-      const nextDate = new Date(now);
-      nextDate.setMonth(nextDate.getMonth() + 1);
-      last6.push({
-        month: nextDate.toLocaleDateString("en-IN", { month: "short", year: "2-digit" }),
-        revenue: null as any,
-        predicted: aiPrediction.predictedSales,
-      });
+    
+    const revenues = monthlyRevenue.map(m => m.revenue);
+    // Predict 12 months ahead
+    const futurePredictions = predictMultipleMonths(revenues, 12);
+    
+    if (futurePredictions.length > 0) {
+      // Add predicted months at positions: 1, 3, 6, 9, 12 months ahead
+      const predictMonthIndices = [0, 2, 5, 8, 11]; // 1m, 3m, 6m, 9m, 12m
+      
+      for (const idx of predictMonthIndices) {
+        if (idx < futurePredictions.length) {
+          const nextDate = new Date(now);
+          nextDate.setMonth(nextDate.getMonth() + idx + 1);
+          last6.push({
+            month: nextDate.toLocaleDateString("en-IN", { month: "short", year: "2-digit" }),
+            revenue: null as any,
+            predicted: futurePredictions[idx],
+          });
+        }
+      }
     }
     return last6;
-  }, [monthlyRevenue, aiPrediction, now]);
+  }, [monthlyRevenue, now]);
 
 
   // ─── Render ───────────────────────────────────────────────────────────────
