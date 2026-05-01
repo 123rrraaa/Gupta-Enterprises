@@ -506,7 +506,7 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
               <XAxis dataKey="month" tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 11 }} />
-              <Tooltip formatter={(value: any) => [formatCurrency(value), "Revenue"]} />
+              <Tooltip formatter={(value: any, name: string) => name === "Revenue" ? [formatCurrency(value), name] : [value, name]} />
               <Legend />
               <Bar dataKey="revenue" fill="#6366f1" name="Revenue" radius={[6, 6, 0, 0]} />
               <Bar dataKey="orders" fill="#a78bfa" name="Orders" radius={[6, 6, 0, 0]} />
