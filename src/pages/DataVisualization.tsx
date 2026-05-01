@@ -363,35 +363,30 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-blue-100">
           <div className="text-xl sm:text-3xl font-bold text-blue-700">{numCustomers}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Customers</div>
-          <TrendArrow current={numCustomers} previous={prevNumCustomers} />
         </div>
 
         {/* Orders */}
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-green-100">
           <div className="text-xl sm:text-3xl font-bold text-green-700">{numOrders}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Orders</div>
-          <TrendArrow current={numOrders} previous={prevNumOrders} />
         </div>
 
         {/* Items Sold */}
         <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-amber-100">
           <div className="text-xl sm:text-3xl font-bold text-amber-700">{numItems}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Items Sold</div>
-          <TrendArrow current={numItems} previous={prevNumItems} />
         </div>
 
         {/* Total Revenue */}
         <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-purple-100">
           <div className="text-lg sm:text-3xl font-bold text-purple-700">{formatCurrency(totalSales)}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Total Revenue</div>
-          <TrendArrow current={totalSales} previous={prevTotalSales} />
         </div>
 
         {/* Avg Order Value */}
         <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-pink-100">
           <div className="text-lg sm:text-3xl font-bold text-pink-700">{formatCurrency(avgOrderValue)}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Avg Order Value</div>
-          <TrendArrow current={avgOrderValue} previous={prevAvgOrderValue} />
         </div>
       </div>
 
