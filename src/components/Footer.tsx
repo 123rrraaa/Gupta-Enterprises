@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-blue-400" />
-                <a href="tel:+919110116565" className="hover:text-blue-400">+91 7039641201</a>
+                <a href="tel:+917039641201" className="hover:text-blue-400">+91 7039641201</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-blue-400" />
@@ -48,7 +48,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-blue-400 mt-1" />
-                <span>Shop No. 5, Meena Bazaar, Somvanshiya Gyati Samaj, Near Police Station, Bhayandar (West), Thane - 401101</span>
+                <a href="https://www.google.com/maps/search/Shop+No.+5,+Meena+Bazaar,+Somvanshiya+Gyati+Samaj,+Near+Police+Station,+Bhayandar+West,+Thane+401101" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">Shop No. 5, Meena Bazaar, Somvanshiya Gyati Samaj, Near Police Station, Bhayandar (West), Thane - 401101</a>
               </li>
             </ul>
           </div>
