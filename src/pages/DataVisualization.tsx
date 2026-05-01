@@ -340,8 +340,8 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     const futurePredictions = predictMultipleMonths(revenues, 12);
     
     if (futurePredictions.length > 0) {
-      // Add predicted months at positions: 1, 3, 6, 9, 12 months ahead
-      const predictMonthIndices = [0, 2, 5, 8, 11]; // 1m, 3m, 6m, 9m, 12m
+      // Add predicted months at positions: 1, 3, 6, 12 months ahead
+      const predictMonthIndices = [0, 2, 5, 11]; // 1m, 3m, 6m, 12m
       
       for (const idx of predictMonthIndices) {
         if (idx < futurePredictions.length) {
