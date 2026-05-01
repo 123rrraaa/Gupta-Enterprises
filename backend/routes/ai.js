@@ -149,7 +149,7 @@ router.get('/summaries', async (req, res) => {
 // ─── POST /ai/support-ticket — Create a support ticket for admin ─────────────
 router.post('/support-ticket', async (req, res) => {
     try {
-        const { conversationId, type, customerMessage, aiResponse, priority } = req.body;
+        const { conversationId, type, customerMessage, aiResponse, priority, userName, userEmail, userPhone } = req.body;
 
         if (!conversationId || !type || !customerMessage) {
             return res.status(400).json({ error: 'conversationId, type, and customerMessage are required' });
@@ -160,6 +160,9 @@ router.post('/support-ticket', async (req, res) => {
 
         const ticket = new SupportTicket({
             conversationId,
+            userName: userName || '',
+            userEmail: userEmail || '',
+            userPhone: userPhone || '',
             type: validTypes.includes(type) ? type : 'Other',
             customerMessage,
             aiResponse: aiResponse || '',

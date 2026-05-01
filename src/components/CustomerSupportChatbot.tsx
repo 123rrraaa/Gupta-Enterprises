@@ -199,6 +199,20 @@ const CustomerSupportChatbot: React.FC = () => {
             const escalationType = detectEscalationType(content.trim());
             if (escalationType) {
                 try {
+                    // Get logged-in user info
+                    let userName = '';
+                    let userEmail = '';
+                    let userPhone = '';
+                    try {
+                        const currentUser = localStorage.getItem('water-current-user');
+                        if (currentUser) {
+                            const parsed = JSON.parse(currentUser);
+                            userName = parsed.name || '';
+                            userEmail = parsed.email || '';
+                            userPhone = parsed.phone || '';
+                        }
+                    } catch (e) { /* ignore parse errors */ }
+
                     await fetch(TICKET_URL, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -208,6 +222,9 @@ const CustomerSupportChatbot: React.FC = () => {
                             customerMessage: content.trim(),
                             aiResponse,
                             priority: detectPriority(content.trim()),
+                            userName,
+                            userEmail,
+                            userPhone,
                         }),
                     });
                     // Show a subtle notification in chat

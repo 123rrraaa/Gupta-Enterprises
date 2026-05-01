@@ -26,6 +26,9 @@ const API_TICKETS = "https://gupta-enterprises-api.onrender.com/ai/support-ticke
 interface SupportTicket {
   _id: string;
   conversationId: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
   type: string;
   customerMessage: string;
   aiResponse: string;
@@ -1030,6 +1033,24 @@ const Admin = () => {
                             </select>
                           </div>
                         </div>
+
+                        {/* User Profile Info */}
+                        {(ticket.userName || ticket.userEmail || ticket.userPhone) && (
+                          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
+                            <p className="text-xs font-semibold text-gray-600 mb-1.5">👤 Customer Info</p>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                              {ticket.userName && (
+                                <span className="text-gray-700"><strong>Name:</strong> {ticket.userName}</span>
+                              )}
+                              {ticket.userEmail && (
+                                <span className="text-gray-700"><strong>Email:</strong> {ticket.userEmail}</span>
+                              )}
+                              {ticket.userPhone && (
+                                <span className="text-gray-700"><strong>Phone:</strong> {ticket.userPhone}</span>
+                              )}
+                            </div>
+                          </div>
+                        )}
 
                         <div className="space-y-2">
                           <div className="bg-red-50 border border-red-100 rounded-lg p-3">

@@ -5,6 +5,18 @@ const supportTicketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userName: {
+        type: String,
+        default: ''
+    },
+    userEmail: {
+        type: String,
+        default: ''
+    },
+    userPhone: {
+        type: String,
+        default: ''
+    },
     type: {
         type: String,
         enum: ['Payment', 'Refund', 'Agent Request', 'Other'],
