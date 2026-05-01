@@ -757,7 +757,8 @@ const Admin = () => {
           <div className="flex items-center gap-4">
             <Button
               onClick={() => navigate('/')}
-              className={buttonVariants({ variant: "outline" }) + " flex items-center gap-2"}
+              variant="outline"
+              className="flex items-center gap-2 hover:bg-transparent hover:text-current"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Website
@@ -862,7 +863,9 @@ const Admin = () => {
                             <div className="flex gap-2">
                               <Button
                                 onClick={() => openEditDialog(product)}
-                                className={buttonVariants({ variant: "outline", size: "sm" })}
+                                variant="outline"
+                                size="sm"
+                                className="hover:bg-transparent hover:text-current"
                               >
                                 <Edit className="h-4 w-4" />
                               </Button>
