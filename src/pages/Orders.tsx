@@ -40,8 +40,18 @@ const Orders = () => {
   useEffect(() => {
     const loadOrders = async () => {
       try {
-        // Fetch orders from MongoDB backend
-        const res = await fetch('https://gupta-enterprises-api.onrender.com/orders');
+        // Get logged in user info
+        const userInfo = JSON.parse(localStorage.getItem('water-current-user') || '{}');
+        const userEmail = userInfo.email;
+
+        if (!userEmail) {
+          console.log('No user logged in, skipping order fetch');
+          setOrders([]);
+          return;
+        }
+
+        // Fetch only this user's orders from MongoDB backend
+        const res = await fetch(`https://gupta-enterprises-api.onrender.com/orders/user/${encodeURIComponent(userEmail)}`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data)) {
@@ -52,7 +62,7 @@ const Orders = () => {
               return dateB - dateA;
             });
             setOrders(data);
-            console.log('Loaded orders from MongoDB:', data.length);
+            console.log('Loaded orders for user:', data.length);
           }
         }
       } catch (err) {

@@ -15,6 +15,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET orders by user email
+router.get("/user/:email", async (req, res) => {
+  try {
+    const email = decodeURIComponent(req.params.email);
+    console.log(`📋 GET /orders/user/${email} - Fetching orders for user`);
+    const orders = await Order.find({ userEmail: email }).sort({ createdAt: -1 });
+    console.log(`📋 Found ${orders.length} orders for user ${email}`);
+    res.json(orders);
+  } catch (err) {
+    console.error('❌ GET /orders/user error:', err.message);
+    res.status(500).json({ error: "Failed to fetch user orders", details: err.message });
+  }
+});
+
 // GET single order
 router.get("/:id", async (req, res) => {
   try {
