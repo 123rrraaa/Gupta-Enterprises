@@ -137,8 +137,15 @@ const CustomerSupportChatbot: React.FC = () => {
     const [showHistory, setShowHistory] = useState(false);
     const [pastSummaries, setPastSummaries] = useState<ConversationSummary[]>([]);
     const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    // Check login status
+    useEffect(() => {
+        const currentUser = localStorage.getItem('water-current-user');
+        setIsLoggedIn(!!currentUser);
+    }, [isOpen]);
 
     // Auto-scroll
     useEffect(() => {
@@ -395,7 +402,51 @@ const CustomerSupportChatbot: React.FC = () => {
             </button>
 
             {/* ─── Chat Window ───────────────────────────────────────────── */}
-            {isOpen && (
+            {isOpen && !isLoggedIn && (
+                <div
+                    id="customer-support-login-prompt"
+                    className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 w-full sm:w-[400px] h-full sm:h-auto bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+                    style={{ animation: "csSlideUp 0.3s ease-out" }}
+                >
+                    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-4 flex items-center gap-3">
+                        <div className="bg-white/20 p-2 rounded-lg">
+                            <span className="text-xl">🎧</span>
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="font-bold text-sm">Customer Support</h3>
+                            <p className="text-xs text-blue-100">Login required</p>
+                        </div>
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="text-white/80 hover:text-white p-1"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
+                        <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                            <span className="text-4xl">🔒</span>
+                        </div>
+                        <h4 className="text-lg font-bold text-gray-800 mb-2">Login Required</h4>
+                        <p className="text-sm text-gray-500 mb-6">
+                            Please login to your account to access customer support and chat with our team.
+                        </p>
+                        <a
+                            href="/login"
+                            className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:shadow-lg transition-all duration-200 hover:scale-105"
+                        >
+                            Login Now
+                        </a>
+                        <p className="text-xs text-gray-400 mt-4">
+                            Don't have an account? <a href="/login" className="text-blue-500 hover:underline">Sign up here</a>
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {isOpen && isLoggedIn && (
                 <div
                     id="customer-support-window"
                     className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 w-full sm:w-[400px] h-full sm:h-auto sm:max-h-[600px] bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
