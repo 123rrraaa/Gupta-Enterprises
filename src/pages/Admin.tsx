@@ -892,7 +892,7 @@ const Admin = () => {
                 <div className="flex items-center justify-between w-full">
                   <CardTitle>Order Management</CardTitle>
                   <div className="flex items-center gap-2">
-                    <Button onClick={handleSyncNow} className={buttonVariants({ variant: "outline", size: "sm" })}>
+                    <Button onClick={handleSyncNow} variant="outline" size="sm" className="hover:bg-transparent hover:text-current">
                       Sync Queue ({queueCount})
                     </Button>
                   </div>
@@ -988,7 +988,9 @@ const Admin = () => {
                     <Badge className="bg-blue-100 text-blue-700">{openTickets} Open</Badge>
                     <Button
                       onClick={fetchTickets}
-                      className={buttonVariants({ variant: "outline", size: "sm" })}
+                      variant="outline"
+                      size="sm"
+                      className="hover:bg-transparent hover:text-current"
                     >
                       Refresh
                     </Button>
@@ -1001,7 +1003,7 @@ const Admin = () => {
                 ) : tickets.length > 0 ? (
                   <div className="space-y-4">
                     {tickets.map((ticket) => (
-                      <div key={ticket._id} className="border rounded-lg p-4 bg-white hover:shadow-sm transition-shadow">
+                      <div key={ticket._id} className="border rounded-lg p-4 bg-white">
                         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-3 mb-3">
                           <div className="flex flex-wrap items-center gap-2">
                             <Badge className={getTicketTypeColor(ticket.type)}>
