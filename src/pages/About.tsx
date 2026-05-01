@@ -10,7 +10,7 @@ const About = () => {
     {
       icon: <Shield className="h-8 w-8 text-blue-500" />,
       title: 'Quality First',
-      description: 'We never compromise on the quality of water we deliver to our customers.'
+      description: 'We never compromise on the quality of our products we deliver to our customers.'
     },
     {
       icon: <Users className="h-8 w-8 text-blue-500" />,
@@ -27,8 +27,6 @@ const About = () => {
   const qualityStandards = [
     'ISO 22000 Certified Partners',
     'BIS (Bureau of Indian Standards) Approved',
-    'Regular Quality Testing',
-    '7-Stage Purification Process',
     'Safe & Hygienic Packaging',
     'Temperature Controlled Storage'
   ];
@@ -47,11 +45,11 @@ const About = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Your Trusted Partner for<br />
-              <span className="text-blue-600">Premium Drinking Water</span>
+              <span className="text-blue-600">Wholesale Premium Beverages</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Founded in 2024, AquaPure is your one-stop destination for premium drinking water from trusted brands. 
-              We believe everyone deserves access to pure, safe, and refreshing water.
+              Founded in 2023, Gupta Enterprises is your one-stop destination for premium beverages from trusted brands. 
+              We believe everyone deserves access to premium variety of beverages in wholesale prices.
             </p>
           </section>
 
@@ -60,18 +58,16 @@ const About = () => {
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <p className="text-gray-600 mb-4">
-                AquaPure was born from a simple idea: making premium quality drinking water accessible to everyone. 
-                We noticed that finding reliable, quality water from trusted brands was often challenging, especially when 
-                you need it delivered to your doorstep.
+                Gupta Enterprises was built on a simple idea: making a premium variety of beverages easily accessible for businesses and customers alike. 
+                We recognized that sourcing high-quality drinks from trusted brands in bulk could often be inconvenient and inconsistent.
               </p>
               <p className="text-gray-600 mb-4">
-                That's why we partnered with the most trusted water brands in India and around the world to bring you 
-                a curated selection of the finest drinking water products. From mineral water to natural spring water, 
-                from everyday hydration to premium choices, we have something for everyone.
+                To solve this, we partnered with some of the most reliable beverage brands in India and globally, offering a curated range of products. 
+                From soft drinks and juices to energy drinks and packaged beverages, we provide options that cater to every need—whether for retail, hospitality, or events.
               </p>
               <p className="text-gray-600">
-                Today, we serve thousands of happy customers across the city, delivering pure water right to their homes 
-                and offices. Our commitment to quality and customer satisfaction drives everything we do.
+                Today, Gupta Enterprises proudly serves a growing network of clients, ensuring timely wholesale supply with a strong focus on quality, consistency, and customer satisfaction. 
+                Our commitment to excellence continues to drive everything we do.
               </p>
             </div>
             <div className="relative">
@@ -81,7 +77,7 @@ const About = () => {
                 className="rounded-2xl shadow-xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-blue-500 text-white p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold">2026</div>
+                <div className="text-3xl font-bold">2023</div>
                 <div className="text-blue-100">Established</div>
               </div>
             </div>
@@ -115,7 +111,7 @@ const About = () => {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Quality Standards</h2>
                 <p className="text-gray-600 mb-6">
                   We partner only with brands that meet the highest quality standards. Every product we sell goes 
-                  through rigorous quality checks to ensure you get nothing but the purest water.
+                  through rigorous quality checks to ensure you get nothing but the purest quality beverages.
                 </p>
                 <ul className="space-y-3">
                   {qualityStandards.map((standard, index) => (
@@ -150,7 +146,7 @@ const About = () => {
           {/* Why Choose Us */}
           <section className="mb-16">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AquaPure?</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Gupta Enterprises?</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
@@ -172,16 +168,16 @@ const About = () => {
                   <Award className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Best Prices</h3>
-                <p className="text-gray-600">Competitive pricing on all products. Get the best value for premium water brands.</p>
+                <p className="text-gray-600">Competitive pricing on all products. Get the best value for our premium variety of beverages.</p>
               </div>
             </div>
           </section>
 
           {/* CTA */}
           <section className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-8 md:p-12 text-white text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Experience Pure Water?</h2>
+            <h2 className="text-3xl font-bold mb-4">Ready to Experience our Products?</h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Browse our collection of premium water products and stay hydrated with the best.
+              Browse our collection of premium beverages and stay hydrated with the best.
             </p>
             <Link to="/products">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8">
