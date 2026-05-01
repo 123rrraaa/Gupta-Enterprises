@@ -152,12 +152,19 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     return d;
   }, [months, now]);
 
-  // Previous period start (for trend comparison)
-  const prevStartDate = useMemo(() => {
-    const d = new Date(startDate);
-    d.setMonth(d.getMonth() - months);
+  // Previous period: always compare last 1 month vs the month before that
+  // This gives consistent month-over-month trends regardless of selected range
+  const currentMonthStart = useMemo(() => {
+    const d = new Date(now);
+    d.setMonth(d.getMonth() - 1);
     return d;
-  }, [months, startDate]);
+  }, [now]);
+
+  const prevMonthStart = useMemo(() => {
+    const d = new Date(now);
+    d.setMonth(d.getMonth() - 2);
+    return d;
+  }, [now]);
 
   // ─── Filtered Orders ─────────────────────────────────────────────────────
   const filteredOrders = useMemo(() =>
@@ -165,12 +172,18 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     [orders, startDate]
   );
 
-  const prevFilteredOrders = useMemo(() =>
+  // For trend arrows: always use last month vs month before
+  const currentMonthOrders = useMemo(() =>
+    orders.filter(o => new Date(o.createdAt) >= currentMonthStart),
+    [orders, currentMonthStart]
+  );
+
+  const prevMonthOrders = useMemo(() =>
     orders.filter(o => {
       const d = new Date(o.createdAt);
-      return d >= prevStartDate && d < startDate;
+      return d >= prevMonthStart && d < currentMonthStart;
     }),
-    [orders, prevStartDate, startDate]
+    [orders, prevMonthStart, currentMonthStart]
   );
 
   // ─── Category Pie Data ────────────────────────────────────────────────────
@@ -219,20 +232,29 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     return set.size;
   }, [filteredOrders]);
   const prevNumCustomers = useMemo(() => {
-    const set = new Set(prevFilteredOrders.map(o => o.address?.phone || o.userId || o.userEmail));
+    const set = new Set(prevMonthOrders.map(o => o.address?.phone || o.userId || o.userEmail));
     return set.size;
-  }, [prevFilteredOrders]);
+  }, [prevMonthOrders]);
+  const currMonthCustomers = useMemo(() => {
+    const set = new Set(currentMonthOrders.map(o => o.address?.phone || o.userId || o.userEmail));
+    return set.size;
+  }, [currentMonthOrders]);
 
   const numOrders = filteredOrders.length;
-  const prevNumOrders = prevFilteredOrders.length;
+  const prevNumOrders = prevMonthOrders.length;
+  const currMonthNumOrders = currentMonthOrders.length;
 
   const numItems = useMemo(() =>
     filteredOrders.reduce((sum, o) => sum + o.items.reduce((s: number, i: any) => s + i.quantity, 0), 0),
     [filteredOrders]
   );
   const prevNumItems = useMemo(() =>
-    prevFilteredOrders.reduce((sum, o) => sum + o.items.reduce((s: number, i: any) => s + i.quantity, 0), 0),
-    [prevFilteredOrders]
+    prevMonthOrders.reduce((sum, o) => sum + o.items.reduce((s: number, i: any) => s + i.quantity, 0), 0),
+    [prevMonthOrders]
+  );
+  const currMonthNumItems = useMemo(() =>
+    currentMonthOrders.reduce((sum, o) => sum + o.items.reduce((s: number, i: any) => s + i.quantity, 0), 0),
+    [currentMonthOrders]
   );
 
   const totalSales = useMemo(() =>
@@ -240,12 +262,17 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
     [filteredOrders]
   );
   const prevTotalSales = useMemo(() =>
-    prevFilteredOrders.reduce((sum, o) => sum + (o.total || 0), 0),
-    [prevFilteredOrders]
+    prevMonthOrders.reduce((sum, o) => sum + (o.total || 0), 0),
+    [prevMonthOrders]
+  );
+  const currMonthTotalSales = useMemo(() =>
+    currentMonthOrders.reduce((sum, o) => sum + (o.total || 0), 0),
+    [currentMonthOrders]
   );
 
   const avgOrderValue = numOrders > 0 ? Math.round(totalSales / numOrders) : 0;
   const prevAvgOrderValue = prevNumOrders > 0 ? Math.round(prevTotalSales / prevNumOrders) : 0;
+  const currMonthAvgOrderValue = currMonthNumOrders > 0 ? Math.round(currMonthTotalSales / currMonthNumOrders) : 0;
 
   // ─── Daily Order Growth ───────────────────────────────────────────────────
   const dailyGrowth = useMemo(() => {
@@ -363,35 +390,35 @@ const DataVisualization: React.FC<{ orders?: any[]; users?: any[]; products?: an
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-blue-100">
           <div className="text-xl sm:text-3xl font-bold text-blue-700">{numCustomers}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Customers</div>
-          <TrendArrow current={numCustomers} previous={prevNumCustomers} />
+          <TrendArrow current={currMonthCustomers} previous={prevNumCustomers} />
         </div>
 
         {/* Orders */}
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-green-100">
           <div className="text-xl sm:text-3xl font-bold text-green-700">{numOrders}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Orders</div>
-          <TrendArrow current={numOrders} previous={prevNumOrders} />
+          <TrendArrow current={currMonthNumOrders} previous={prevNumOrders} />
         </div>
 
         {/* Items Sold */}
         <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-amber-100">
           <div className="text-xl sm:text-3xl font-bold text-amber-700">{numItems}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Items Sold</div>
-          <TrendArrow current={numItems} previous={prevNumItems} />
+          <TrendArrow current={currMonthNumItems} previous={prevNumItems} />
         </div>
 
         {/* Total Revenue */}
         <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-purple-100">
           <div className="text-lg sm:text-3xl font-bold text-purple-700">{formatCurrency(totalSales)}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Total Revenue</div>
-          <TrendArrow current={totalSales} previous={prevTotalSales} />
+          <TrendArrow current={currMonthTotalSales} previous={prevTotalSales} />
         </div>
 
         {/* Avg Order Value */}
         <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-3 sm:p-5 rounded-xl shadow-sm text-center cursor-pointer group transition-transform duration-200 hover:scale-105 border border-pink-100">
           <div className="text-lg sm:text-3xl font-bold text-pink-700">{formatCurrency(avgOrderValue)}</div>
           <div className="text-gray-600 text-xs sm:text-sm mt-1">Avg Order Value</div>
-          <TrendArrow current={avgOrderValue} previous={prevAvgOrderValue} />
+          <TrendArrow current={currMonthAvgOrderValue} previous={prevAvgOrderValue} />
         </div>
       </div>
 
