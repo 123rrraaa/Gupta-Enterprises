@@ -32,7 +32,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-blue-600">
             <Droplets className="h-8 w-8" />
-            <span className="hidden sm:block">Gupta Enterprises</span>
+            <span className="text-base sm:text-2xl">Gupta Enterprises</span>
           </Link>
 
           {/* Search Bar */}
