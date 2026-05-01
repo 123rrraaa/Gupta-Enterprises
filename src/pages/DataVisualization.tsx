@@ -120,7 +120,7 @@ const formatCurrency = (n: number) => "₹" + n.toLocaleString("en-IN");
 
 const TrendArrow: React.FC<{ current: number; previous: number }> = ({ current, previous }) => {
   if (previous === 0 && current === 0) return <span className="text-gray-400 text-xs">—</span>;
-  if (previous === 0) return <span className="text-gray-400 text-xs">—</span>;
+  if (previous === 0) return <span className="text-green-600 text-xs font-semibold">↑ 100%</span>;
   const pct = ((current - previous) / previous * 100).toFixed(1);
   const isUp = current >= previous;
   return (
