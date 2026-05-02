@@ -1043,7 +1043,7 @@ const Admin = () => {
                                 <span className="text-gray-700"><strong>Name:</strong> {ticket.userName}</span>
                               )}
                               {ticket.userEmail && (
-                                <span className="text-gray-700"><strong>Email:</strong> {ticket.userEmail}</span>
+                                <span className="text-gray-700"><strong>Email:</strong> <a href={`mailto:${ticket.userEmail}`} className="text-blue-600 hover:underline">{ticket.userEmail}</a></span>
                               )}
                               {ticket.userPhone && (
                                 <span className="text-gray-700"><strong>Phone:</strong> {ticket.userPhone}</span>
