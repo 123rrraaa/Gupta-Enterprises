@@ -44,7 +44,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-blue-400" />
-                <a href="mailto:guptaenterprises@gmail.com" className="hover:text-blue-400">guptaenterprises@gmail.com</a>
+                <a href="mailto:guptaenterprises259@gmail.com" className="hover:text-blue-400">guptaenterprises259@gmail.com</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-blue-400 mt-1" />
