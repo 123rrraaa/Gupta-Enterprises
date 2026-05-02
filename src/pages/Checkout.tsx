@@ -47,7 +47,7 @@ const Checkout = () => {
   const [orderId, setOrderId] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const deliveryCharge = getCartTotal() >= 200 ? 0 : 30;
+  const deliveryCharge = getCartTotal() >= 2000 ? 0 : 30;
   const finalTotal = getCartTotal() + deliveryCharge;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

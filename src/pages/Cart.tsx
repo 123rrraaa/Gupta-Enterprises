@@ -19,7 +19,7 @@ const Cart = () => {
     });
   };
 
-  const deliveryCharge = getCartTotal() >= 200 ? 0 : 30;
+  const deliveryCharge = getCartTotal() >= 2000 ? 0 : 30;
   const finalTotal = getCartTotal() + deliveryCharge;
 
   return (
@@ -112,7 +112,7 @@ const Cart = () => {
                       </div>
                       {deliveryCharge > 0 && (
                         <p className="text-xs text-blue-600">
-                          Add ₹{200 - getCartTotal()} more for free delivery!
+                          Add ₹{2000 - getCartTotal()} more for free delivery!
                         </p>
                       )}
                       <div className="border-t pt-3">
