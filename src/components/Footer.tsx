@@ -48,7 +48,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-blue-400 mt-1" />
-                <a href="https://www.google.com/maps/search/Shop+No.+5,+Meena+Bazaar,+Somvanshiya+Gyati+Samaj,+Near+Police+Station,+Bhayandar+West,+Thane+401101" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">Shop No. 5, Meena Bazaar, Somvanshiya Gyati Samaj, Near Police Station, Bhayandar (West), Thane - 401101</a>
+                <a href="https://maps.app.goo.gl/qAsDmKJqeoJWBWub6?g_st=aw" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">Location</a>
               </li>
             </ul>
           </div>
